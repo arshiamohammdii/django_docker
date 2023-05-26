@@ -13,4 +13,4 @@ class Url(models.Model):
     expiration_date = models.DateTimeField(default=get_expiration_date)
 
     def __str__(self):
-        return self.slug
+        return self.short_url
