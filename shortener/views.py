@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import HttpResponse
 from .models import Url
-
+from .serializers import UrlSerializer
 # Create your views here.
 def index(request):
     return HttpResponse("this page is testing")
@@ -17,14 +17,14 @@ def url_shortener(request):
     #return Succes and the shorturl in s/<int:hash>
     """
     domain = request.META['HTTP_HOST']
-    if request.url:
-        url = Url(original_url=request.url)
+    if request.data["url"]:
+        url = Url(original_url=request.data["url"])
+        url.save()
 
 
 
 
-
-    return Response({'message': 'helooooooo url', 'data': request.META['HTTP_HOST']})
+        return Response({'data': url.short_url})
 
 
 
