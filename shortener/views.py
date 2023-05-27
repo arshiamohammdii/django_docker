@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import HttpResponse
+from .models import Url
 
 # Create your views here.
 def index(request):
@@ -14,13 +15,21 @@ def url_shortener(request):
     #get the hash outcome of the original url
     #save it to the database
     #return Succes and the shorturl in s/<int:hash>
-    return Response({'message': 'helooooooo url', 'data': request.data})
     """
+    domain = request.META['HTTP_HOST']
+    if request.url:
+        url = Url(original_url=request.url)
 
 
-    
+
+
+
+    return Response({'message': 'helooooooo url', 'data': request.META['HTTP_HOST']})
+
+
+
 @api_view()
-def redirect_to_orginal(request):
+def redirect_to_orginal(request, hash):
     """
     #query the url
     #check for expiration
@@ -28,4 +37,4 @@ def redirect_to_orginal(request):
     #else 
         #redirect to the right url
     """
-    pass
+    return Response({'message': 'helooooooo url', 'data': hash})
