@@ -20,8 +20,8 @@ class Url(models.Model):
             self.short_url = self.get_short_url()
         super().save(*args, **kwargs)
 
-    def __str__(self):
-        return self.original_url
+    # def __str__(self):
+    #     return self.original_url
     
     def get_short_url(self):
-       return f"http://{settings.SITE_URL}/api/go/{self.hash}"
+       return f"{settings.SITE_URL}/api/g/{self.hash}"
